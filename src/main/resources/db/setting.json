@@ -1,0 +1,8 @@
+{
+  "count": 1,
+  "fileSize": 10000,
+  "availableFiles": [
+    "db-1.json"
+  ],
+  "defaultPort": 8000
+}
