@@ -4,23 +4,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class FileUtil {
     private static final Logger LOGGER = Logger.getLogger(FileUtil.class.getName());
-    private static final String BASE_PATH_TEXT = "/db/";
+    public static final String BASE_PATH_TEXT = "C:\\FastDB\\";
     private static final ObjectMapper mapper = new ObjectMapper();
+    public static Path BASE_PATH = Paths.get(FileUtil.BASE_PATH_TEXT);
 
     private FileUtil() {
     }
 
     public static Path getPath(String fileName) {
         try {
-            var uri = Objects.requireNonNull(FileUtil.class.getResource(BASE_PATH_TEXT)).getFile().replaceFirst("/", "");
-            return Path.of(uri + fileName);
+//            var uri = Objects.requireNonNull(FileUtil.class.getResource(BASE_PATH_TEXT)).getFile().replaceFirst("/", "");
+            return Path.of(BASE_PATH_TEXT + fileName);
         } catch (Exception ex) {
             LOGGER.log(Level.INFO, "FileUtil.getPath :: " + ex.getMessage());
             return Path.of(BASE_PATH_TEXT);

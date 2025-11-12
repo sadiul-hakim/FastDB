@@ -1,10 +1,7 @@
 package org.fast_db;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Executors;
@@ -18,6 +15,12 @@ public class FastDBServer {
     }
 
     public static void start(int port) {
+
+        File baseFolder = new File(FileUtil.BASE_PATH_TEXT);
+        if (!baseFolder.exists()) {
+            baseFolder.mkdir();
+        }
+
         try (var server = new ServerSocket(port);
              var service = Executors.newVirtualThreadPerTaskExecutor()) {
 
